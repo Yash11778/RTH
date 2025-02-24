@@ -18,30 +18,44 @@ export default function IdeaSubmission() {
       <div className="container">
         <h1>Submit Your Idea</h1>
         <form>
-          <label>Idea Title:</label>
-          <input type="text" placeholder="Enter your idea title" />
+          <div className="form-group">
+            <label>Idea Title:</label>
+            <input type="text" placeholder="Enter your idea title" />
+          </div>
 
-          <label>Domains:</label>
-          <select>
-            <option>Select a domain</option>
-          </select>
+          <div className="form-group">
+            <label>Domains:</label>
+            <select>
+              <option>Select a domain</option>
+            </select>
+          </div>
 
-          <label>Sub-Domains:</label>
-          <select>
-            <option>Select a sub-domain</option>
-          </select>
+          <div className="form-group">
+            <label>Sub-Domains:</label>
+            <select>
+              <option>Select a sub-domain</option>
+            </select>
+          </div>
 
-          <label>Tags:</label>
-          <input type="text" placeholder="Enter tags associated with the project" />
+          <div className="form-group">
+            <label>Tags:</label>
+            <input type="text" placeholder="Enter tags associated with the project" />
+          </div>
 
-          <label>Project Description:</label>
-          <textarea placeholder="Describe your project"></textarea>
+          <div className="form-group">
+            <label>Project Description:</label>
+            <textarea placeholder="Describe your project"></textarea>
+          </div>
 
-          <label>Attach PDF (optional):</label>
-          <input type="file" />
+          <div className="form-group">
+            <label>Attach PDF (optional):</label>
+            <input type="file" />
+          </div>
 
-          <label>Unique UID:</label>
-          <input type="text" placeholder="Your unique UID" />
+          <div className="form-group">
+            <label>Unique UID:</label>
+            <input type="text" placeholder="Your unique UID" />
+          </div>
 
           <button type="submit">Submit</button>
         </form>
