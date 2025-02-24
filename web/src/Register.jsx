@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./styles/Register.css";
+import Navbar from "./components/Navbar";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -37,21 +39,27 @@ export default function Register() {
   };
 
   return (
-    <div className="container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Full Name" onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-        
-        {/* Role Selection Dropdown */}
-        <select name="role" onChange={handleChange} required>
-          <option value="student">Student</option>
-          <option value="mentor">Mentor</option>
-        </select>
+    <>
+    <Navbar />
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Register</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="name" placeholder="Full Name" onChange={handleChange} required />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+          <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+          
+          {/* Role Selection Dropdown */}
+          <select name="role" onChange={handleChange} required>
+            <option value="student">Student</option>
+            <option value="mentor">Mentor</option>
+          </select>
 
-        <button type="submit">Register</button>
-      </form>
+          <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <br /> <a href="/login">Login</a></p>
+      </div>
     </div>
+    </>
   );
 }

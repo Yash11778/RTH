@@ -69,7 +69,7 @@ body {
 .container {
   width: 100%;
   max-width: 800px;
-  margin: 120px auto 0;
+  margin: 60px auto 0;
   padding: 20px;
   text-align: center;
   animation: fadeInUp 0.8s ease-in-out;

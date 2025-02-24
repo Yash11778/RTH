@@ -15,28 +15,17 @@ const IdeaVerification = () => {
     setIdeas(data);
   };
 
-  const verifyIdea = async (id) => {
-    await fetch(`http://localhost:5000/ideas/${id}/verify`, {
+  const toggleVerification = async (id, status) => {
+    const newStatus = status === "verified" ? "pending" : "verified";
+
+    await fetch(`http://localhost:5000/ideas/${id}/${newStatus === "verified" ? "verify" : "not-verify"}`, {
       method: "PUT",
     });
 
-    // Update state to change status to "verified"
+    // Update state to toggle status
     setIdeas((prevIdeas) =>
       prevIdeas.map((idea) =>
-        idea._id === id ? { ...idea, status: "verified" } : idea
-      )
-    );
-  };
-
-  const notVerifyIdea = async (id) => {
-    await fetch(`http://localhost:5000/ideas/${id}/not-verify`, {
-      method: "PUT",
-    });
-
-    // Update state to change status back to "pending"
-    setIdeas((prevIdeas) =>
-      prevIdeas.map((idea) =>
-        idea._id === id ? { ...idea, status: "pending" } : idea
+        idea._id === id ? { ...idea, status: newStatus } : idea
       )
     );
   };
@@ -94,13 +83,9 @@ const IdeaVerification = () => {
                 <td>
                   <button
                     className={`verify-btn ${idea.status === "verified" ? "verified" : ""}`}
-                    onClick={() => verifyIdea(idea._id)}
-                    disabled={idea.status === "verified"}
+                    onClick={() => toggleVerification(idea._id, idea.status)}
                   >
-                    {idea.status === "verified" ? "Verified" : "Verify"}
-                  </button>
-                  <button className="not-verify-btn" onClick={() => notVerifyIdea(idea._id)}>
-                    Don't Verify
+                    {idea.status === "verified" ? "Undo Verify" : "Verify"}
                   </button>
                   <button className="delete-btn" onClick={() => deleteEntry(idea._id)}>
                     Delete Entry

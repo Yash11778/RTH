@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./styles/Register.css";
+import Navbar from "./components/Navbar";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -36,13 +38,19 @@ export default function Login() {
   };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-        <button type="submit">Login</button>
-      </form>
+    <>
+    <Navbar />
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+          <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <br /><a href="/register">Register</a></p>
+      </div>
     </div>
+    </>
   );
 }
