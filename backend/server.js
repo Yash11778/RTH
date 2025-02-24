@@ -236,7 +236,19 @@ app.post('/user-profile', async (req, res) => {
   }
 });
   
-
+// Fetch User Role
+app.post('/user-role', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json({ role: user.role });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch user role' });
+  }
+});
 
 // Start Server
 const PORT = process.env.PORT || 5000; 

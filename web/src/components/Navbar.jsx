@@ -13,6 +13,10 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  const handleProfileClick = () => {
+    navigate('/user-profile');
+  };
+
   return (
     <nav className="navbar">
       {/* Company Logo and Name */}
@@ -27,11 +31,9 @@ const Navbar = () => {
         <li><Link to="/idea-submission">Submit Idea</Link></li>
         <li><Link to="/idea-verification">Verify Idea</Link></li>
         <li><Link to="/find-mentor">Find Mentor</Link></li>
-
-        {/* Profile Dropdown */}
         {user ? (
           <>
-            <li>Welcome, {user.name}</li>
+            <li><button onClick={handleProfileClick}>Welcome, {user.name}</button></li>
             <li><button onClick={handleLogout}>Logout</button></li>
           </>
         ) : (

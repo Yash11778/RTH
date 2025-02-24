@@ -4,9 +4,28 @@ import "./styles/IdeaVerification.css";
 
 const IdeaVerification = () => {
   const [ideas, setIdeas] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    fetchIdeas();
+    const checkUserRole = async () => {
+      try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+        const response = await fetch('http://localhost:5000/user-role', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await response.json();
+        if (data.role === 'admin') {
+          setIsAdmin(true);
+          fetchIdeas();
+        }
+      } catch (error) {
+        console.error('Error fetching user role:', error);
+      }
+    };
+
+    checkUserRole();
   }, []);
 
   const fetchIdeas = async () => {
@@ -38,6 +57,18 @@ const IdeaVerification = () => {
     // Remove the deleted entry from state
     setIdeas((prevIdeas) => prevIdeas.filter((idea) => idea._id !== id));
   };
+
+  if (!isAdmin) {
+    return (
+      <div>
+        <Navbar />
+        <br />
+        <br />
+        <br />
+        <h1>Login with admin account</h1>
+      </div>
+    );
+  }
 
   return (
     <div>
