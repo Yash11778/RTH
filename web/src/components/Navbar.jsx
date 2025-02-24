@@ -1,11 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import "../styles/Navbar.css";
 import logo from "../assets/logo.png";
 
 function Navbar() {
   const navigate = useNavigate();
-  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
     <nav className="navbar">
@@ -18,23 +16,16 @@ function Navbar() {
       {/* Navigation Links */}
       <ul className="navbar-menu">
         <li><Link to="/idea-submission">Idea Submission</Link></li>
-        <li><Link to="/admin-verification">Admin Verification</Link></li>
-        
+        <li><Link to="/idea-verification">Idea Verification</Link></li>
         <li><Link to="/find-mentor">Find Mentor</Link></li>
-      {/* Profile Dropdown */}
-      <li className="profile-dropdown">
-          <span 
-            className="dropdown-toggle" 
-            onClick={() => setShowDropdown(!showDropdown)}
-          >
-            Profile ▼
-          </span>
-          {showDropdown && (
-            <ul className="dropdown-menu">
-              <li><Link to="/login" onClick={() => setShowDropdown(false)}>Login</Link></li>
-              <li><Link to="/register" onClick={() => setShowDropdown(false)}>Register</Link></li>
-            </ul>
-          )}
+
+        {/* Profile Dropdown */}
+        <li className="profile-dropdown">
+          <span className="dropdown-toggle">Profile 👤 ▼ </span>
+          <ul className="dropdown-menu">
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Register</Link></li>
+          </ul>
         </li>
       </ul>
     </nav>

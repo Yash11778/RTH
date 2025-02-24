@@ -1,7 +1,8 @@
 .navbar {
     width: 100%;
+    height: 60px; /* Fixed height */
     background: #007bff;
-    padding: 15px 20px;
+    padding: 1px 1px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,10 +11,8 @@
     left: 0;
     z-index: 1000;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeInDown 0.6s ease-in-out;
 }
 
-/* Logo and Company Name */
 .navbar-logo {
     display: flex;
     align-items: center;
@@ -22,12 +21,12 @@
 }
 
 .logo {
-    width: 50px;
-    height: 40px;
+    width: 45px;
+    height: 35px;
 }
 
 .company-name {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
 }
@@ -36,67 +35,51 @@
 .navbar-menu {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 20px;
     padding: 0;
     margin: 0;
 }
 
 .navbar-menu li {
-    display: inline;
+    display: flex;
+    align-items: center;
     position: relative;
 }
 
 .navbar-menu li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    padding: 10px 15px;
-    transition: 0.3s ease-in-out;
-    position: relative;
-}
-
-/* Navbar Hover Effect */
-.navbar-menu li a::after {
-    content: "";
-    width: 0;
-    height: 3px;
-    background: white;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: width 0.3s ease-in-out;
-}
-
-.navbar-menu li a:hover::after {
-    width: 100%;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
 }
 
 /* Profile Dropdown */
 .profile-dropdown {
-    position: relative;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    padding: 10px 15px;
+    padding: 8px 12px;
+    position: relative;
 }
 
 .dropdown-toggle {
     display: flex;
     align-items: center;
     gap: 5px;
-    cursor: pointer;
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu - Now Appears on Hover */
 .dropdown-menu {
-    display: block;
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
+    background: #007bff;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     padding: 10px 0;
@@ -105,19 +88,22 @@
     visibility: hidden;
     transform: translateY(10px);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Stacks login/register vertically */
 }
 
-.profile-dropdown:hover .dropdown-menu,
-.profile-dropdown:focus-within .dropdown-menu {
+/* Show dropdown on hover */
+.profile-dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
+/* Ensure items appear in column (stacked) */
 .dropdown-menu li {
-    padding: 10px 15px;
     display: block;
-    white-space: nowrap;
+    text-align: left;
+    padding: 10px 15px;
 }
 
 .dropdown-menu li a {
@@ -128,6 +114,7 @@
     display: block;
 }
 
+/* Hover effect for dropdown items */
 .dropdown-menu li:hover {
-    background: #f0f0f0;
+    background: #007bff;
 }
