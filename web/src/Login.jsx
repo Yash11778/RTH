@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/Register.css";
 import Navbar from "./components/Navbar";
+import axios from 'axios';
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -28,6 +29,7 @@ export default function Login() {
       if (response.ok) {
         alert("Login successful!");
         localStorage.setItem("token", result.token); // Store token (if using authentication)
+        localStorage.setItem("user", JSON.stringify(result.user)); // Store user info
         navigate("/home"); // Redirect after login
       } else {
         alert(result.error || "Login failed.");

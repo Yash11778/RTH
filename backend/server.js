@@ -6,6 +6,9 @@ const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
+const authenticateToken = require('./middleware/authenticateToken');
+
+
 dotenv.config();
 const app = express();
 
@@ -218,13 +221,20 @@ app.put("/pitch/:id", requireLogin, async (req, res) => {
   res.json({ message: "Pitch status updated" });
 });
 
-app.get("/me", (req, res) => {
-    if (req.session.user) {
-      res.json(req.session.user);
-    } else {
-      res.status(401).json({ message: "Not logged in" });
+// Fetch User Profile and Ideas
+app.post('/user-profile', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
-  });
+    const ideas = await Idea.find({ email });
+    res.json({ user, ideas });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch user data' });
+  }
+});
   
 
 

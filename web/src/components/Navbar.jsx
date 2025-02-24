@@ -1,9 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Navbar.css";
 import logo from "../assets/logo.png";
 
-const Navbar = ({ userName }) => {
+const Navbar = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
     <nav className="navbar">
       {/* Company Logo and Name */}
@@ -14,22 +23,26 @@ const Navbar = ({ userName }) => {
 
       {/* Navigation Links */}
       <ul className="navbar-menu">
-        <li><Link to="/idea-submission">Idea Submission</Link></li>
-        <li><Link to="/idea-verification">Idea Verification</Link></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/idea-submission">Submit Idea</Link></li>
+        <li><Link to="/idea-verification">Verify Idea</Link></li>
         <li><Link to="/find-mentor">Find Mentor</Link></li>
 
         {/* Profile Dropdown */}
-        <li className="profile-dropdown">
-          <span className="dropdown-toggle">Profile 👤 ▼ </span>
-          <ul className="dropdown-menu">
+        {user ? (
+          <>
+            <li>Welcome, {user.name}</li>
+            <li><button onClick={handleLogout}>Logout</button></li>
+          </>
+        ) : (
+          <>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Register</Link></li>
-          </ul>
-        </li>
-        {userName && <li className="navbar-user">Welcome, {userName}!</li>}
+          </>
+        )}
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;
