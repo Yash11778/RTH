@@ -103,14 +103,36 @@ app.post("/logout", (req, res) => {
 });
 
 // Add Idea (Student Only)
-app.post("/idea", requireLogin, async (req, res) => {
-  if (req.session.user.role !== "student") return res.status(403).json({ message: "Only students can add ideas" });
+// app.post("/idea", requireLogin, async (req, res) => {
+//   if (req.session.user.role !== "student") return res.status(403).json({ message: "Only students can add ideas" });
 
-  const { title, description } = req.body;
-  const newIdea = new Idea({ studentId: req.session.user._id, title, description });
-  await newIdea.save();
-  res.json({ message: "Idea submitted successfully" });
-});
+//   const { title, description } = req.body;
+//   const newIdea = new Idea({ studentId: req.session.user._id, title, description });
+//   await newIdea.save();
+//   res.json({ message: "Idea submitted successfully" });
+// });
+
+// Get all ideas
+app.get("/ideas", async (req, res) => {
+    try {
+      const ideas = await Idea.find();
+      res.json(ideas);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch ideas" });
+    }
+  });
+
+// Verify an idea
+app.put("/ideas/:id/verify", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Idea.findByIdAndUpdate(id, { status: "verified" });
+      res.status(200).json({ message: "Idea verified successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to verify idea" });
+    }
+  });
+
 
 app.post("/ideas", upload.single("pdf"), async (req, res) => {
     try {
@@ -135,15 +157,26 @@ app.post("/ideas", upload.single("pdf"), async (req, res) => {
     }
   });
 
-// Delete Idea (Only Owner)
-app.delete("/idea/:id", requireLogin, async (req, res) => {
-  const idea = await Idea.findById(req.params.id);
-  if (!idea || idea.studentId.toString() !== req.session.user._id)
-    return res.status(403).json({ message: "Unauthorized or idea not found" });
+// Delete an idea
+app.delete("/ideas/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Idea.findByIdAndDelete(id);
+      res.status(200).json({ message: "Idea deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete idea" });
+    }
+  });
 
-  await Idea.findByIdAndDelete(req.params.id);
-  res.json({ message: "Idea deleted successfully" });
-});
+// Delete Idea (Only Owner)
+// app.delete("/idea/:id", requireLogin, async (req, res) => {
+//   const idea = await Idea.findById(req.params.id);
+//   if (!idea || idea.studentId.toString() !== req.session.user._id)
+//     return res.status(403).json({ message: "Unauthorized or idea not found" });
+
+//   await Idea.findByIdAndDelete(req.params.id);
+//   res.json({ message: "Idea deleted successfully" });
+// });
 
 // Mentor List
 app.get("/mentors", async (req, res) => {

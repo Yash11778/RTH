@@ -4,7 +4,7 @@ import AdminVerification from './AdminVerification';
 import FindMentor from './FindMentor';
 import UserProfile from './UserProfile';
 import HomePage from './HomePage';
-
+import IdeaVerification from './IdeaVerification';
 import Register from "./Register";
 import Login from "./Login";
 
@@ -20,6 +20,7 @@ function App() {
         <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/idea-verification" element={<IdeaVerification />} />
       </Routes>
     </Router>
   );
