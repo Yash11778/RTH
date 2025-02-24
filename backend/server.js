@@ -50,6 +50,7 @@ const ideaSchema = new mongoose.Schema({
   uid: { type: String, required: true },
   pdf: { type: String }, // Store PDF file path or URL
   status: { type: String, default: "pending" },
+  email: { type: String, required: true },
 });
 
 
@@ -113,7 +114,7 @@ app.post("/idea", requireLogin, async (req, res) => {
 
 app.post("/ideas", upload.single("pdf"), async (req, res) => {
     try {
-      const { title, domain, subDomain, tags, description, uid } = req.body;
+      const { title, domain, subDomain, tags, description, uid, email } = req.body;
       const pdfPath = req.file ? req.file.path : null;
   
       const newIdea = new Idea({
@@ -124,6 +125,7 @@ app.post("/ideas", upload.single("pdf"), async (req, res) => {
         description,
         uid,
         pdf: pdfPath,
+        email,
       });
   
       await newIdea.save();
@@ -148,6 +150,7 @@ app.get("/mentors", async (req, res) => {
   const mentors = await User.find({ role: "mentor" }, "name expertise");
   res.json(mentors);
 });
+
 
 // Pitch Idea to Mentor
 app.post("/pitch", requireLogin, async (req, res) => {

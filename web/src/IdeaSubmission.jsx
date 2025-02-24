@@ -18,6 +18,7 @@ export default function IdeaSubmission() {
     description: "",
     uid: "",
     pdf: null,
+    email: "",
   });
 
   const [subDomains, setSubDomains] = useState([]);
@@ -50,6 +51,7 @@ export default function IdeaSubmission() {
     submissionData.append("tags", formData.tags);
     submissionData.append("description", formData.description);
     submissionData.append("uid", formData.uid);
+    submissionData.append("email", formData.email);
     if (formData.pdf) {
       submissionData.append("pdf", formData.pdf);
     }
@@ -71,6 +73,7 @@ export default function IdeaSubmission() {
           description: "",
           uid: "",
           pdf: null,
+          email: "",
         });
       } else {
         alert("Error: " + result.error);
@@ -163,6 +166,18 @@ export default function IdeaSubmission() {
               name="uid"
               placeholder="Your unique UID"
               value={formData.uid}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
               onChange={handleChange}
               required
             />
