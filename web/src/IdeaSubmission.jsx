@@ -19,41 +19,41 @@ export default function IdeaSubmission() {
         <h1>Submit Your Idea</h1>
         <form>
           <div className="form-group">
-            <label>Idea Title:</label>
+            <label>Idea Title</label>
             <input type="text" placeholder="Enter your idea title" />
           </div>
 
           <div className="form-group">
-            <label>Domains:</label>
+            <label>Domains</label>
             <select>
               <option>Select a domain</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label>Sub-Domains:</label>
+            <label>Sub-Domains</label>
             <select>
               <option>Select a sub-domain</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label>Tags:</label>
+            <label>Tags</label>
             <input type="text" placeholder="Enter tags associated with the project" />
           </div>
 
           <div className="form-group">
-            <label>Project Description:</label>
+            <label>Project Description</label>
             <textarea placeholder="Describe your project"></textarea>
           </div>
 
           <div className="form-group">
-            <label>Attach PDF (optional):</label>
+            <label>Attach PDF (optional)</label>
             <input type="file" />
           </div>
 
           <div className="form-group">
-            <label>Unique UID:</label>
+            <label>Unique UID</label>
             <input type="text" placeholder="Your unique UID" />
           </div>
 
