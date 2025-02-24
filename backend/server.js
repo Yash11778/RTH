@@ -133,6 +133,15 @@ app.put("/ideas/:id/verify", async (req, res) => {
     }
   });
 
+  app.put("/ideas/:id/not-verify", async (req, res) => {
+    try {
+      await Idea.findByIdAndUpdate(req.params.id, { status: "pending" });
+      res.json({ message: "Idea status reset to pending" });
+    } catch (error) {
+      res.status(500).json({ error: "Error resetting idea status" });
+    }
+  });
+  
 
 app.post("/ideas", upload.single("pdf"), async (req, res) => {
     try {
