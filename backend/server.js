@@ -14,14 +14,15 @@ app.use(cors());
 
 // Session Middleware
 app.use(
-  session({
-    secret: "random_string", // You can generate one dynamically if needed
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
-    cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }
-  })
-);
+    session({
+      secret: "random_string",
+      resave: false,
+      saveUninitialized: false,
+      store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+      cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }
+    })
+  );
+  
 
 // Connect to MongoDB
 mongoose
@@ -84,17 +85,20 @@ app.post("/register", async (req, res) => {
 
 // User Login
 app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-
-  if (!user) return res.status(400).json({ message: "User not found" });
-
-  const validPass = await bcrypt.compare(password, user.password);
-  if (!validPass) return res.status(400).json({ message: "Invalid password" });
-
-  req.session.user = { _id: user._id, role: user.role };
-  res.json({ message: "Login successful" });
-});
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+  
+    if (!user) return res.status(400).json({ message: "User not found" });
+  
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+  
+    // Store user details in session
+    req.session.user = { id: user._id, name: user.name, email: user.email };
+    res.json({ message: "Login successful", user: req.session.user });
+  });
+  
+  
 
 // User Logout
 app.post("/logout", (req, res) => {
@@ -213,6 +217,16 @@ app.put("/pitch/:id", requireLogin, async (req, res) => {
   await Pitch.findByIdAndUpdate(req.params.id, { status, feedback });
   res.json({ message: "Pitch status updated" });
 });
+
+app.get("/me", (req, res) => {
+    if (req.session.user) {
+      res.json(req.session.user);
+    } else {
+      res.status(401).json({ message: "Not logged in" });
+    }
+  });
+  
+
 
 // Start Server
 const PORT = process.env.PORT || 5000; 

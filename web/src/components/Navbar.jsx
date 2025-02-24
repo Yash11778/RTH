@@ -2,9 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import logo from "../assets/logo.png";
 
-function Navbar() {
+const Navbar = ({ userName }) => {
   const navigate = useNavigate();
-
   return (
     <nav className="navbar">
       {/* Company Logo and Name */}
@@ -27,6 +26,7 @@ function Navbar() {
             <li><Link to="/register">Register</Link></li>
           </ul>
         </li>
+        {userName && <li className="navbar-user">Welcome, {userName}!</li>}
       </ul>
     </nav>
   );
