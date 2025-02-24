@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/IdeaSubmission.css";
+import Navbar from "./components/Navbar";
+
+const domainData = {
+  Tech: ["Computer Science", "Electronics", "Mechanical", "AI/ML", "Cybersecurity"],
+  Medicine: ["General Medicine", "Surgery", "Pediatrics", "Pharmacy", "Dentistry"],
+  Business: ["Marketing", "Finance", "Entrepreneurship", "Human Resources", "Operations"],
+  Arts: ["Music", "Painting", "Literature", "Performing Arts", "History"],
+};
 
 export default function IdeaSubmission() {
+  const [selectedDomain, setSelectedDomain] = useState("");
+  const [subDomains, setSubDomains] = useState([]);
+
+  const handleDomainChange = (e) => {
+    const domain = e.target.value;
+    setSelectedDomain(domain);
+    setSubDomains(domainData[domain] || []);
+  };
+
   return (
     <>
-      {/* Navbar */}
-      <nav className="navbar">
-        <ul>
-          <li><a href="#">Idea Submission</a></li>
-          <li><a href="#">Admin Verification</a></li>
-          <li><a href="#">Find Mentor</a></li>
-          <li><a href="#">User Profile</a></li>
-        </ul>
-      </nav>
+      <Navbar />
 
       {/* Page Content */}
       <div className="container">
@@ -25,15 +34,25 @@ export default function IdeaSubmission() {
 
           <div className="form-group">
             <label>Domains</label>
-            <select>
-              <option>Select a domain</option>
+            <select className="border p-2 w-full" onChange={handleDomainChange}>
+              <option value="">Select a domain</option>
+              {Object.keys(domainData).map((domain) => (
+                <option key={domain} value={domain}>
+                  {domain}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className="form-group">
             <label>Sub-Domains</label>
-            <select>
-              <option>Select a sub-domain</option>
+            <select className="border p-2 w-full" disabled={!selectedDomain}>
+              <option value="">Select a sub-domain</option>
+              {subDomains.map((sub, index) => (
+                <option key={index} value={sub}>
+                  {sub}
+                </option>
+              ))}
             </select>
           </div>
 

@@ -1,0 +1,53 @@
+.navbar {
+    width: 100%;
+    background: #007bff;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 0.6s ease-in-out;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar ul li {
+    display: inline;
+  }
+  
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  /* Navbar Hover Effect */
+  .navbar ul li a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: white;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .navbar ul li a:hover::after {
+    width: 100%;
+  }

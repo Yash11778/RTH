@@ -10,6 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} /> {/* Use element instead of component */}
+        <Route path="/home" element={<HomePage />} /> {/* Use element instead of component */}
         <Route path="/idea-submission" element={<IdeaSubmission />} />
         <Route path="/admin-verification" element={<AdminVerification />} />
         <Route path="/find-mentor" element={<FindMentor />} />

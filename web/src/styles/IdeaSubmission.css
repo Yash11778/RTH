@@ -88,9 +88,9 @@ form {
   transition: transform 0.3s ease-in-out;
 }
 
-form:hover {
-  transform: scale(1.02);
-}
+/* form:hover {
+  transform: scale(1.01);
+} */
 
 /* Form Fields */
 .form-group {
