@@ -5,6 +5,9 @@ import FindMentor from './FindMentor';
 import UserProfile from './UserProfile';
 import HomePage from './HomePage';
 
+import Register from "./Register";
+import Login from "./Login";
+
 function App() {
   return (
     <Router>
@@ -15,6 +18,8 @@ function App() {
         <Route path="/admin-verification" element={<AdminVerification />} />
         <Route path="/find-mentor" element={<FindMentor />} />
         <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
