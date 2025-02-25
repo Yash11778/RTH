@@ -41,6 +41,19 @@ const FindMentor = () => {
     }
   };
 
+  const handlePitch = async (mentorId) => {
+    try {
+      const response = await axios.post("http://localhost:5000/pitch", {
+        ideaId: selectedIdea._id,
+        mentorId: mentorId,
+      });
+      alert(`Pitched to mentor with ID: ${mentorId}`);
+    } catch (error) {
+      console.error("Error pitching to mentor:", error);
+      alert("Failed to pitch to mentor.");
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -70,6 +83,7 @@ const FindMentor = () => {
                   <div className="mentor-card" key={mentor._id}>
                     <h4>{mentor.name}</h4>
                     <p>Expertise: {mentor.expertise.join(', ')}</p>
+                    <button onClick={() => handlePitch(mentor._id)}>Pitch</button>
                   </div>
                 ))}
               </div>

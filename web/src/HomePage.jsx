@@ -36,7 +36,7 @@ function HomePage() {
             Empowering students to become creators and innovators by providing a digital space where they can bring any idea to life.
           </p>
           <motion.a 
-            href="/submit" 
+            href="/idea-submission" 
             className="cta-button"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}

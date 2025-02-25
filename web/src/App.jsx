@@ -6,6 +6,7 @@ import HomePage from './HomePage';
 import IdeaVerification from './IdeaVerification';
 import Register from "./Register";
 import Login from "./Login";
+import IdeaBot from "./components/IdeaBot";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/idea-verification" element={<IdeaVerification />} />
+        <Route path="/idea-bot" element={<IdeaBot />} />
 
       </Routes>
     </Router>

@@ -22,6 +22,33 @@ const UserProfile = () => {
     fetchUserData();
   }, []);
 
+  const handleGenerateFeasibility = async (description) => {
+    const formData = new FormData();
+    formData.append('idea', description);
+
+    try {
+      const response = await axios.post('http://192.168.41.209:8000/analyze', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        responseType: 'blob', // Important for handling binary data
+      });
+
+      // Create a URL for the PDF blob
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+      // Open the PDF in a new tab
+      const newTab = window.open(url, '_blank');
+      if (newTab) {
+        newTab.focus();
+      } else {
+        alert('Please allow popups for this website');
+      }
+    } catch (error) {
+      console.error('Error generating feasibility analysis:', error);
+      alert('Failed to generate feasibility analysis.');
+    }
+  };
+
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -48,6 +75,9 @@ const UserProfile = () => {
               <p><strong>Tags:</strong> {idea.tags.join(', ')}</p>
               <p><strong>Description:</strong> {idea.description}</p>
               <p><strong>Status:</strong> {idea.status}</p>
+              <button onClick={() => handleGenerateFeasibility(idea.description)}>
+                Generate Feasibility Analysis
+              </button>
               {/* Add more fields as needed */}
             </div>
           ))}
