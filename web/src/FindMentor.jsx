@@ -9,24 +9,36 @@ const FindMentor = () => {
   const [mentors, setMentors] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/ideas")
-      .then((response) => setIdeas(response.data))
-      .catch((error) => console.error("Error fetching ideas:", error));
+    const fetchIdeas = async () => {
+      try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+        const response = await axios.post("http://localhost:5000/user-profile", { email });
+        setIdeas(response.data.ideas);
+      } catch (error) {
+        console.error("Error fetching ideas:", error);
+      }
+    };
+
+    fetchIdeas();
   }, []);
 
-  const handleIdeaSelect = (idea) => {
+  const handleIdeaSelect = (e) => {
+    const idea = JSON.parse(e.target.value);
     setSelectedIdea(idea);
-    if (idea.verified) {
+    if (idea.status === 'verified') {
       fetchMentors();
     } else {
       setMentors([]);
     }
   };
 
-  const fetchMentors = () => {
-    axios.get("http://localhost:5000/api/mentors")
-      .then((response) => setMentors(response.data))
-      .catch((error) => console.error("Error fetching mentors:", error));
+  const fetchMentors = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/mentors");
+      setMentors(response.data);
+    } catch (error) {
+      console.error("Error fetching mentors:", error);
+    }
   };
 
   return (
@@ -38,26 +50,26 @@ const FindMentor = () => {
         {/* Idea Selection */}
         <div className="dropdown">
           <label>Select Your Idea:</label>
-          <select onChange={(e) => handleIdeaSelect(JSON.parse(e.target.value))}>
+          <select onChange={handleIdeaSelect}>
             <option value="">-- Choose an Idea --</option>
             {ideas.map((idea) => (
-              <option key={idea.id} value={JSON.stringify(idea)}>
-                {idea.title} {idea.verified ? "✅" : "❌"}
+              <option key={idea._id} value={JSON.stringify(idea)}>
+                {idea.title} {idea.status === 'verified' ? "✅" : "❌"}
               </option>
             ))}
           </select>
         </div>
 
         {/* Mentor Section */}
-        {selectedIdea && selectedIdea.verified ? (
+        {selectedIdea && selectedIdea.status === 'verified' ? (
           <div className="mentors-container">
             <h3>Available Mentors</h3>
             {mentors.length > 0 ? (
               <div className="mentor-list">
                 {mentors.map((mentor) => (
-                  <div className="mentor-card" key={mentor.id}>
+                  <div className="mentor-card" key={mentor._id}>
                     <h4>{mentor.name}</h4>
-                    <p>Expertise: {mentor.expertise}</p>
+                    <p>Expertise: {mentor.expertise.join(', ')}</p>
                   </div>
                 ))}
               </div>

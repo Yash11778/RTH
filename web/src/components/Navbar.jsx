@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Navbar.css";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [role, setRole] = useState(null);
   const user = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/user-role', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: user.email }),
+        });
+        const data = await response.json();
+        setRole(data.role);
+      } catch (error) {
+        console.error('Error fetching user role:', error);
+      }
+    };
+
+    if (user) {
+      fetchUserRole();
+    }
+  }, [user]);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -29,7 +50,9 @@ const Navbar = () => {
       <ul className="navbar-menu">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/idea-submission">Submit Idea</Link></li>
-        <li><Link to="/idea-verification">Verify Idea</Link></li>
+        {role === 'admin' && (
+          <li><Link to="/idea-verification">Verify Idea</Link></li>
+        )}
         <li><Link to="/find-mentor">Find Mentor</Link></li>
         {user ? (
           <>

@@ -51,7 +51,6 @@ const ideaSchema = new mongoose.Schema({
   subDomain: { type: String, required: true },
   tags: [{ type: String }],
   description: { type: String, required: true },
-  uid: { type: String, required: true },
   pdf: { type: String }, // Store PDF file path or URL
   status: { type: String, default: "pending" },
   email: { type: String, required: true },
