@@ -16,9 +16,7 @@ export default function IdeaSubmission() {
     subDomain: "",
     tags: "",
     description: "",
-    uid: "",
     pdf: null,
-    email: "",
   });
 
   const [subDomains, setSubDomains] = useState([]);
@@ -44,14 +42,15 @@ export default function IdeaSubmission() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const email = JSON.parse(localStorage.getItem('user')).email;
+
     const submissionData = new FormData();
     submissionData.append("title", formData.title);
     submissionData.append("domain", formData.domain);
     submissionData.append("subDomain", formData.subDomain);
     submissionData.append("tags", formData.tags);
     submissionData.append("description", formData.description);
-    submissionData.append("uid", formData.uid);
-    submissionData.append("email", formData.email);
+    submissionData.append("email", email);
     if (formData.pdf) {
       submissionData.append("pdf", formData.pdf);
     }
@@ -71,9 +70,7 @@ export default function IdeaSubmission() {
           subDomain: "",
           tags: "",
           description: "",
-          uid: "",
           pdf: null,
-          email: "",
         });
       } else {
         alert("Error: " + result.error);
@@ -157,30 +154,6 @@ export default function IdeaSubmission() {
           <div className="form-group">
             <label>Attach PDF (optional)</label>
             <input type="file" name="pdf" onChange={handleFileChange} />
-          </div>
-
-          <div className="form-group">
-            <label>Unique UID</label>
-            <input
-              type="text"
-              name="uid"
-              placeholder="Your unique UID"
-              value={formData.uid}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
           </div>
 
           <button type="submit">Submit</button>
