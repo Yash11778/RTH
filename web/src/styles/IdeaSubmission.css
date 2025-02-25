@@ -13,7 +13,7 @@ body {
 /* Navbar */
 .navbar {
   width: 100%;
-  background: #007bff;
+  background: #588B8B;
   padding: 15px 0;
   display: flex;
   justify-content: center;
@@ -127,7 +127,7 @@ form {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #588B8B;
   background: white;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
@@ -142,7 +142,7 @@ input[type="file"] {
 /* Submit Button */
 button {
   padding: 14px;
-  background: #007bff;
+  background: #588B8B;
   color: white;
   font-size: 16px;
   font-weight: bold;

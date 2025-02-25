@@ -22,7 +22,7 @@ table {
 
 /* Header Row */
 thead {
-    background: #007bff;
+    background: #588B8B;
     color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -115,7 +115,7 @@ h1 {
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
-    background: linear-gradient(to right, #007bff, #0056b3);
+    background: linear-gradient(to right, #588B8B, #0056b3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
@@ -131,7 +131,7 @@ h1::after {
     display: block;
     width: 80px;
     height: 4px;
-    background-color: #007bff;
+    background-color: #588B8B;
     margin: 8px auto 0;
     border-radius: 2px;
     transition: width 0.3s ease-in-out;

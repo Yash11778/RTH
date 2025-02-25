@@ -48,7 +48,7 @@ input, select {
 button {
     width: 100%;
     padding: 12px;
-    background: #007bff;
+    background: #588B8B;
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -72,7 +72,7 @@ button:hover {
 .toggle-button {
     background: none;
     border: none;
-    color: #007bff;
+    color: #588B8B;
     cursor: pointer;
     font-weight: 600;
 }

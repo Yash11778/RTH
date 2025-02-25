@@ -1,128 +1,138 @@
 /* Overall Container */
 .find-mentor-container {
-    max-width: 900px;
-    margin: 80px auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* Page Title */
-  .page-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: #007bff;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  
-  /* Idea Selection */
-  .idea-selection-container {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .idea-selection-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  /* Dropdown */
-  .dropdown-container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .custom-dropdown {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: 500;
-    border: 2px solid #007bff;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: white;
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .custom-dropdown:hover,
-  .custom-dropdown:focus {
-    border-color: #004a99;
-    background: linear-gradient(135deg, #0056b3, #003d80);
-    transform: scale(1.02);
-  }
-  
-  /* Mentors Section */
-  .mentors-container {
-    margin-top: 40px;
-  }
-  
-  .mentors-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  /* Mentor Cards */
-  .mentors-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .mentor-card {
-    width: 250px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: left;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-  
-  .mentor-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .mentor-card h3 {
-    font-size: 20px;
-    color: #007bff;
-    margin-bottom: 5px;
-  }
-  
-  .mentor-card p {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .no-mentors {
-    font-size: 18px;
-    color: #ff3b3b;
-    font-weight: bold;
-  }
-  
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    .find-mentor-container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* Dropdown Section */
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dropdown-label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.custom-dropdown {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  border: 2px solid #3498db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Fix Dropdown Visibility */
+.custom-dropdown option {
+  background: #ffffff;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Hover & Focus Effects */
+.custom-dropdown:hover,
+.custom-dropdown:focus {
+  border-color: #2980b9;
+  background: #f8f9fa;
+  transform: scale(1.02);
+}
+
+/* Mentors Section */
+.mentors-container {
+  margin-top: 40px;
+}
+
+.mentors-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Mentor Cards */
+.mentors-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.mentor-card {
+  width: 250px;
+  background: #ecf0f1;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.mentor-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mentor-card h4 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.mentor-card p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.no-mentors {
+  font-size: 18px;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Not Verified Message */
+.not-verified {
+  font-size: 18px;
+  color: #e67e22;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .find-mentor-container {
       padding: 15px;
-    }
-  
-    .custom-dropdown {
+  }
+
+  .custom-dropdown {
       max-width: 100%;
-    }
-  
-    .mentors-list {
+  }
+
+  .mentors-list {
       flex-direction: column;
       align-items: center;
-    }
   }
-   
+}

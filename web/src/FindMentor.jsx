@@ -45,12 +45,12 @@ const FindMentor = () => {
     <>
       <Navbar />
       <div className="find-mentor-container">
-        <h1 className="page-title">Find Mentor Here</h1>
+        <h1 className="page-title">Find Your Mentor</h1>
 
         {/* Idea Selection */}
-        <div className="dropdown">
-          <label>Select Your Idea:</label>
-          <select onChange={handleIdeaSelect}>
+        <div className="dropdown-container">
+          <label className="dropdown-label">Select Your Idea:</label>
+          <select className="custom-dropdown" onChange={handleIdeaSelect}>
             <option value="">-- Choose an Idea --</option>
             {ideas.map((idea) => (
               <option key={idea._id} value={JSON.stringify(idea)}>
@@ -63,9 +63,9 @@ const FindMentor = () => {
         {/* Mentor Section */}
         {selectedIdea && selectedIdea.status === 'verified' ? (
           <div className="mentors-container">
-            <h3>Available Mentors</h3>
+            <h3 className="mentors-title">Available Mentors</h3>
             {mentors.length > 0 ? (
-              <div className="mentor-list">
+              <div className="mentors-list">
                 {mentors.map((mentor) => (
                   <div className="mentor-card" key={mentor._id}>
                     <h4>{mentor.name}</h4>
