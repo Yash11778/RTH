@@ -27,7 +27,7 @@ const UserProfile = () => {
     formData.append('idea', description);
 
     try {
-      const response = await axios.post('http://192.168.41.209:8000/analyze', formData, {
+      const response = await axios.post('http://192.168.41.:8000/analyze', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
