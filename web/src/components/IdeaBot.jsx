@@ -22,7 +22,7 @@ const CbtAi = () => {
         setResponses((prev) => [...prev, newResponse]);
         setUserInput("");
 
-        const apiUrl = "http://192.168.41.209:3000/chat";
+        const apiUrl = "http://192.168.41.:3000/chat";
 
         try {
             const response = await fetch(apiUrl, {
